@@ -1,6 +1,6 @@
 # Open Treasury
 
-A Cardano treasury-withdrawal platform. Andamio is the backbone. A native-script multisig wallet holds the ada. x402 charges a platform fee on the major steps.
+A Cardano treasury-withdrawal platform. Andamio is the backbone. A native-script multisig wallet holds the ada. x402 charges a platform fee on the major steps (undecided).
 
 ## Why Andamio
 
@@ -114,6 +114,14 @@ Gated actions return HTTP 402 with a Cardano `exact` payment requirement: networ
 | Further gated events of the same kind | The user who triggers the event |
 
 Fee amounts are configuration. They are not part of the constitutional budget.
+
+## Open question: charge or free
+
+Still undecided.
+
+1. **Charge.** Keep x402. The submitter and the approver pay a set amount to our address on present, milestone approval, and the same class of events.
+2. **Free for the public.** Drop those fees. Finance the platform by requesting funds from the community.
+
 
 ## Backend
 
