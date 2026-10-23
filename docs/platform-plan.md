@@ -6,6 +6,8 @@ A Cardano treasury-withdrawal platform. Andamio is the backbone. A native-script
 
 Andamio already runs the project on-chain. This app connects to that API. It does not build a second project system.
 
+The platform already runs this kind of project on-chain. It manages Intersect’s open-source funds by creating and managing the tasks for that treasury. This app connects to that same API schme. It does not build a second project system.
+
 - **Project management.** The proposal is an Andamio project. The submitter is the owner. Managers, tasks, and status come from Andamio.
 - **Tasks drafted on-chain.** Milestones are Andamio tasks. The draft, the evidence, and the administrator’s decision are recorded by Andamio on Cardano. We read them back with the API.
 - **Funds release follows the API.** The administrator acts in Andamio. When the API shows that administrator has accepted a task, the custody wallet pays that task’s amount. The release rule is Andamio’s. We execute the payment the API describes.
