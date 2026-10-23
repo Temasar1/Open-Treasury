@@ -1,12 +1,20 @@
 # Open Treasury
 
-A Cardano treasury-withdrawal platform. Andamio runs the project. A native-script multisig wallet holds the ada. x402 charges a platform fee on the major steps.
+A Cardano treasury-withdrawal platform. Andamio is the backbone. A native-script multisig wallet holds the ada. x402 charges a platform fee on the major steps.
+
+## Why Andamio
+
+Andamio already runs the project on-chain. This app connects to that API. It does not build a second project system.
+
+- **Project management.** The proposal is an Andamio project. The submitter is the owner. Managers, tasks, and status come from Andamio.
+- **Tasks drafted on-chain.** Milestones are Andamio tasks. The draft, the evidence, and the administrator’s decision are recorded by Andamio on Cardano. We read them back with the API.
+- **Funds release follows the API.** The administrator acts in Andamio. When the API shows that administrator has accepted a task, the custody wallet pays that task’s amount. The release rule is Andamio’s. We execute the payment the API describes.
 
 ## Roles
 
 | Piece | Role |
 | --- | --- |
-| Andamio | Project and tasks. The submitter is the project owner. We read tasks from the Andamio API. We do not rebuild project management, and we do not put withdrawal ada in the Andamio project. |
+| Andamio | Backbone. Project, on-chain task drafts, and the administrator decision that authorizes a release. |
 | Custody wallet | A prepared native-script multisig. Assigned when the proposal is presented. This is the account that receives and pays the withdrawal. |
 | x402 | Cardano `exact` payment to our address before a gated action completes. Proposal submission, milestone approval, and the same class of events. This fee is separate from the withdrawal. |
 | This app | Constitution form, immutable proposal document, Andamio link, wallet assignment, task view, and payout signing. |
@@ -32,8 +40,8 @@ If either check fails, submission stays closed.
    - Create the Andamio project. The submitter signs and is the owner. Store `project_id`.
    - Assign a prepared custody wallet. Show its address, signers, and threshold.
 4. **On-chain withdrawal.** The governance action uses the document URL and hash, the 100,000 ADA deposit, and the custody wallet as the receiving stake account. The account is delegated to Always Abstain and is not delegated to an SPO.
-5. **After it passes.** Ada sits in the custody wallet. The owner creates milestones on Andamio and works them there. We read those tasks from the API.
-6. **Milestone approval.** x402 fee to our address. Signers then pay that task’s ada from the custody wallet to the recipient. Andamio remains the record of the task. The wallet remains the funds.
+5. **After it passes.** Ada sits in the custody wallet. Milestones are drafted as Andamio tasks, on-chain. We read those tasks from the API.
+6. **Funds release.** The administrator accepts the task in Andamio. When the API reports that acceptance, the submitter pays the x402 fee and the custody-wallet signers pay that task’s ada to the recipient.
 
 ```text
 form → x402 (submit) → Andamio project + prepared wallet → governance action
@@ -81,7 +89,7 @@ We use the gateway. The API key stays on the server. The user signs with their o
 | Read the project | `GET /api/v2/project/user/project/{project_id}` |
 | Read tasks | `POST /api/v2/project/user/tasks/list` |
 
-The owner creates and updates tasks in Andamio. This app polls or refreshes the task list and shows it next to the custody balance. A task approval we act on is an Andamio task that their side has already marked accepted. We then pay from the custody wallet.
+The owner drafts tasks on Andamio. The administrator accepts or rejects them there. This app reads that state from the API and pays from the custody wallet only when the API says the administrator accepted the task.
 
 Transaction path for the project create we do initiate: Andamio returns unsigned CBOR, the owner signs and submits, we `POST /api/v2/tx/register`, and we wait until `final_state` is `updated`.
 
