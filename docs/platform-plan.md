@@ -1,12 +1,15 @@
 # Open Treasury
 
-A Cardano treasury-withdrawal platform. Andamio is the backbone. A native-script multisig wallet holds the ada. x402 charges a platform fee on the major steps (undecided).
+This app does two things.
+
+1. **Send proposals with constitution guidance.** A submitter writes a Cardano treasury-withdrawal proposal in this app. Every field shows the constitution clause and the exact content that clause requires. The app publishes that document and sends the governance action.
+2. **Administer the treasury wallet if the proposal is funded.** When the withdrawal passes, the administrators named in the proposal control the native-script custody wallet. They release ada from that wallet when Andamio’s API shows the administrator accepted the task.
+
+Andamio is the backbone for the project and the tasks. The non-custodian native multiscript wallet holds the ada. Whether public use is charged or free is still open.
 
 ## Why Andamio
 
-Andamio already runs the project on-chain. This app connects to that API. It does not build a second project system.
-
-The platform already runs this kind of project on-chain. It manages Intersect’s open-source funds by creating and managing the tasks for that treasury. This app connects to that same API schme. It does not build a second project system.
+Andamio already runs this kind of project on-chain and even one of the reason the app is built for. It currently manages Intersect’s open-source funds by creating and managing the tasks for that treasury. This app connects to that same API. It does not build a second project system.
 
 - **Project management.** The proposal is an Andamio project. The submitter is the owner. Managers, tasks, and status come from Andamio.
 - **Tasks drafted on-chain.** Milestones are Andamio tasks. The draft, the evidence, and the administrator’s decision are recorded by Andamio on Cardano. We read them back with the API.
@@ -19,7 +22,7 @@ The platform already runs this kind of project on-chain. It manages Intersect’
 | Andamio | Backbone. Project, on-chain task drafts, and the administrator decision that authorizes a release. |
 | Custody wallet | A prepared native-script multisig. Assigned when the proposal is presented. This is the account that receives and pays the withdrawal. |
 | x402 | Cardano `exact` payment to our address before a gated action completes. Proposal submission, milestone approval, and the same class of events. This fee is separate from the withdrawal. |
-| This app | Constitution form, immutable proposal document, Andamio link, wallet assignment, task view, and payout signing. |
+| This app | Sends the constitution-guided proposal. If it is funded, runs the administrators’ treasury wallet. |
 
 Preprod first: `https://preprod.api.andamio.io`. Network and API key change for mainnet.
 
