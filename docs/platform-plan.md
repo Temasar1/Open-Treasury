@@ -3,7 +3,7 @@
 This app does two things.
 
 1. **Send proposals with constitution guidance.** A submitter writes a Cardano treasury-withdrawal proposal in this app. Every field shows the constitution clause and the exact content that clause requires. The app publishes that document and sends the governance action.
-2. **Administer the treasury wallet if the proposal is funded.** When the withdrawal passes, the administrators named in the proposal control the native-script custody wallet. They release ada from that wallet when Andamio’s API shows the administrator accepted the task.
+2. **Administer the treasury wallet if the proposal is funded.** When the withdrawal passes, the administrators named in the proposal control the native-script non-custodian wallet. They release ada from that wallet when Andamio’s API shows the administrator accepted the milestones drafted as tasks and sent through andamio API
 
 Andamio is the backbone for the project and the tasks. The non-custodian native multiscript wallet holds the ada. Whether public use is charged or free is still open.
 
